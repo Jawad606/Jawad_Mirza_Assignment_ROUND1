@@ -110,7 +110,7 @@ router.post("/login", cors.cors, (req, res, next) => {
           success: true,
           status: "Login Successful!",
           token: token,
-          user: req.user.email,
+          "user_id": req.user._id,
         });
       });
     }
