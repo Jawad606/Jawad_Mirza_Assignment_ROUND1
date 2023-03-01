@@ -91,7 +91,7 @@ app.use(cookieParser());
 const router = require("./routes/users");
 
 // Set up the middleware for handling user requests
-app.use("/users", router);
+app.use("/", router);
 
 // Middleware for handling 404 errors
 app.use(function (req, res, next) {
