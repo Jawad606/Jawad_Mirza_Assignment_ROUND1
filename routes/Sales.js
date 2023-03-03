@@ -26,7 +26,7 @@ SalesRouter.route("/")
     req.body.user_id = mongoose.Types.ObjectId(req.body.user_id);
     Sales.create(req.body)
       .then((sales) => {
-        Sales.find().then((sales) => {
+        Sales.findById(sales._id).then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales[0]);
@@ -48,7 +48,7 @@ SalesRouter.route("/:favId")
       { new: true }
     )
       .then((sales) => {
-        Sales.find().then((sales) => {
+        Sales.findById(sales._id).then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales[0]);
@@ -83,7 +83,7 @@ SalesRouter.route("/:favId")
       { new: true }
     )
       .then((sales) => {
-        Sales.find().then((sales) => {
+        Sales.findById(sales._id).then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales[0]);
