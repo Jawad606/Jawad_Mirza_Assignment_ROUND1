@@ -32,6 +32,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require("mongoose");
 mongoose.set("debug", true);
+mongoose.set('toJSON', {
+  virtuals: true,
+  transform: (doc, converted) => {
+    delete converted._id;
+  }
+});
 const url = config.mongoUrl;
 console.log(url);
 const connect = mongoose.connect(url);

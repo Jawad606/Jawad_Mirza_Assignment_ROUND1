@@ -27,7 +27,7 @@ SalesRouter.route("/")
       ? mongoose.Types.ObjectId(req.body.User)
       : mongoose.Types.ObjectId(req.body.user_id);
 
-      console.log(req.body)
+    console.log(req.body);
     Sales.create(req.body)
       .then((sales) => {
         Sales.find().then((sales) => {
