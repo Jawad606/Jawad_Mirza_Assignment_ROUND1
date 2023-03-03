@@ -23,7 +23,7 @@ InfoRouter.route("/:userId")
     });
   })
   .post(cors.cors, (req, res, next) => {
-    req.body.User = mongoose.Types.ObjectId(req.params.userId);
+    req.body.user_id = mongoose.Types.ObjectId(req.params.user_id);
     Info.create(req.body)
       .then((info) => {
         Info.findById(info._id).then((info) => {

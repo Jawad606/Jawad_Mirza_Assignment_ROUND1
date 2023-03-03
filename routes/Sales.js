@@ -23,9 +23,7 @@ SalesRouter.route("/")
     });
   })
   .post(cors.cors, (req, res, next) => {
-    req.body.User = req.body.User
-      ? mongoose.Types.ObjectId(req.body.User)
-      : mongoose.Types.ObjectId(req.body.user_id);
+    req.body.user_id = mongoose.Types.ObjectId(req.body.user_id);
     Sales.create(req.body)
       .then((sales) => {
         Sales.find().then((sales) => {
