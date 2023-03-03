@@ -29,7 +29,7 @@ SalesRouter.route("/")
         Sales.find().then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
-          res.json(sales);
+          res.json(sales[0]);
         });
       })
       .catch((err) => console.log(err));
@@ -51,7 +51,7 @@ SalesRouter.route("/:favId")
         Sales.find().then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
-          res.json(sales);
+          res.json(sales[0]);
         });
       })
       .catch((err) => console.log(err));
@@ -64,7 +64,7 @@ SalesRouter.route("/:favId")
         Sales.find().then((Sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
-          res.json(Sales);
+          res.json(Sales[0]);
         });
       })
       .catch((err) => console.log(err));
@@ -86,7 +86,7 @@ SalesRouter.route("/:favId")
         Sales.find().then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
-          res.json(sales);
+          res.json(sales[0]);
         });
       })
       .catch((err) => console.log(err));
