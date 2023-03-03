@@ -16,7 +16,7 @@ var sale_statistics = new Schema(
         product_name: { type: String },
         price: { type: String }
     },
-    product_highest_revenue_sale_number_for_current_user: {
+    product_highest_sales_number_for_current_user: {
         product_name: { type: String },
         price: { type: String }
     },
