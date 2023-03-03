@@ -16,12 +16,11 @@ InfoRouter.route("/:userId")
     res.sendStatus(200);
   })
   .get(cors.cors, (req, res, next) => {
-    Info.find()
-      .then((info) => {
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res.json(info);
-      });
+    Info.find().then((info) => {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.json(info);
+    });
   })
   .post(cors.cors, (req, res, next) => {
     req.body.User = mongoose.Types.ObjectId(req.params.userId);
@@ -41,34 +40,31 @@ InfoRouter.route("/:userId")
     res.sendStatus(200);
   })
   .patch(cors.cors, (req, res, next) => {
-    Info.findByIdAndUpdate(
-      req.params.userId,
+    Info.findOneAndUpdate(
+      { User: req.params.userId },
       {
         $set: req.body,
-      },
-      { new: true }
+      }
     )
       .then((info) => {
-        Info.findById(info._id)
-          .then((info) => {
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json");
-            res.json(info);
-          });
+        Info.findById(info._id).then((info) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json(info);
+        });
       })
       .catch((err) => console.log(err));
   })
 
-  .delete(cors.cors,  (req, res, next) => {
+  .delete(cors.cors, (req, res, next) => {
     const id = mongoose.Types.ObjectId(req.params.userId);
     Info.findByIdAndRemove(id)
       .then((info) => {
-        Info.find()
-          .then((info) => {
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json");
-            res.json(info);
-          });
+        Info.find().then((info) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json(info);
+        });
       })
       .catch((err) => console.log(err));
   });
