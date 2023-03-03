@@ -19,15 +19,13 @@ SalesRouter.route("/")
     Sales.find().then((sales) => {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
-      res.json(sales[0]);
+      res.json(sales);
     });
   })
   .post(cors.cors, (req, res, next) => {
     req.body.User = req.body.User
       ? mongoose.Types.ObjectId(req.body.User)
       : mongoose.Types.ObjectId(req.body.user_id);
-
-    console.log(req.body);
     Sales.create(req.body)
       .then((sales) => {
         Sales.find().then((sales) => {
@@ -44,7 +42,6 @@ SalesRouter.route("/:favId")
     res.sendStatus(200);
   })
   .patch(cors.cors, (req, res, next) => {
-    console.log(req.body);
     Sales.findByIdAndUpdate(
       req.params.favId,
       {
@@ -80,7 +77,6 @@ SalesRouter.route("/:favId")
     res.sendStatus(200);
   })
   .put(cors.cors, (req, res, next) => {
-    console.log(req.body);
     Sales.findByIdAndUpdate(
       req.params.favId,
       {

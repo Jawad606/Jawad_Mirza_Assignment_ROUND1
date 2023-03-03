@@ -14,8 +14,9 @@ var Sales = new Schema(
     date: {
       type: String,
     },
-    User: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
+     ref: 'User'
     },
   },
   {
