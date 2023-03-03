@@ -16,17 +16,16 @@ Sale_StatisticsRouter.route("/")
     res.sendStatus(200);
   })
   .get(cors.cors, (req, res, next) => {
-    Sale_Statistics.find()
-      .then((sales) => {
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res.json(sales);
-      });
+    Sale_Statistics.find().then((sales) => {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.json(sales);
+    });
   })
   .post(cors.cors, (req, res, next) => {
     Sale_Statistics.create(req.body)
       .then((sales) => {
-        Sale_Statistics.findById(Sale_Statistics._id).then((sales) => {
+        Sale_Statistics.findById(sales._id).then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales);
@@ -48,12 +47,11 @@ Sale_StatisticsRouter.route("/:favId")
       { new: true }
     )
       .then((sales) => {
-        Sale_Statistics.findById(sales._id)
-          .then((sales) => {
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json");
-            res.json(sales);
-          });
+        Sale_Statistics.findById(sales._id).then((sales) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json(sales);
+        });
       })
       .catch((err) => console.log(err));
   })
@@ -62,12 +60,11 @@ Sale_StatisticsRouter.route("/:favId")
     const id = mongoose.Types.ObjectId(req.params.favId);
     Sale_Statistics.findByIdAndRemove(id)
       .then((sales) => {
-        Sale_Statistics.find()
-          .then((Sale_Statistics) => {
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json");
-            res.json(Sale_Statistics);
-          });
+        Sale_Statistics.find().then((Sale_Statistics) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json(Sale_Statistics);
+        });
       })
       .catch((err) => console.log(err));
   });

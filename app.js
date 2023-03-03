@@ -92,12 +92,14 @@ const router = require("./routes/users");
 const InfoRouter = require("./routes/Info");
 const Sale_StatisticsRouter = require("./routes/Sale_Statistics");
 const SalesRouter = require("./routes/Sales");
+const CountriesRouter = require("./routes/Countries");
 
 // Set up the middleware for handling user requests
 app.use("/", router);
 app.use("/users", InfoRouter);
 app.use("/sale_statistics", Sale_StatisticsRouter);
 app.use("/sales", SalesRouter);
+app.use("/countries", CountriesRouter);
 
 // Middleware for handling 404 errors
 app.use(function (req, res, next) {

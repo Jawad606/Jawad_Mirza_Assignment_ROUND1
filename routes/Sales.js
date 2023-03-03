@@ -37,7 +37,44 @@ SalesRouter.route("/")
   });
 
 SalesRouter.route("/:favId")
-  .options(cors.cors, auth.verifyUser, (req, res) => {
+  .options(cors.cors, (req, res) => {
+    res.sendStatus(200);
+  })
+  .patch(cors.cors, (req, res, next) => {
+    Sales.findByIdAndUpdate(
+      req.params.favId,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    )
+      .then((sales) => {
+        Sales.findById(sales._id)
+          .then((sales) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(sales);
+          });
+      })
+      .catch((err) => console.log(err));
+  })
+
+  .delete(cors.cors,  (req, res, next) => {
+    const id = mongoose.Types.ObjectId(req.params.favId);
+    Sales.findByIdAndRemove(id)
+      .then((sales) => {
+        Sales.find()
+          .then((Sales) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.json(Sales);
+          });
+      })
+      .catch((err) => console.log(err));
+  });
+
+  SalesRouter.route("/:favId")
+  .options(cors.cors, (req, res) => {
     res.sendStatus(200);
   })
   .put(cors.cors, (req, res, next) => {
@@ -58,19 +95,5 @@ SalesRouter.route("/:favId")
       })
       .catch((err) => console.log(err));
   })
-
-  .delete(cors.cors, auth.verifyUser, (req, res, next) => {
-    const id = mongoose.Types.ObjectId(req.params.favId);
-    Sales.findByIdAndRemove(id)
-      .then((sales) => {
-        Sales.find()
-          .then((Sales) => {
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "application/json");
-            res.json(Sales);
-          });
-      })
-      .catch((err) => console.log(err));
-  });
 
 module.exports = SalesRouter;
