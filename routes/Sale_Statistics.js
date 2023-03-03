@@ -56,7 +56,7 @@ Sale_StatisticsRouter.route("/:favId")
       .catch((err) => console.log(err));
   })
 
-  .delete(cors.cors, auth.verifyUser, (req, res, next) => {
+  .delete(cors.cors, (req, res, next) => {
     const id = mongoose.Types.ObjectId(req.params.favId);
     Sale_Statistics.findByIdAndRemove(id)
       .then((sales) => {
