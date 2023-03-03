@@ -19,7 +19,7 @@ InfoRouter.route("/:userId")
     Info.find().then((info) => {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
-      res.json(info);
+      res.json(info[0]);
     });
   })
   .post(cors.cors, (req, res, next) => {
