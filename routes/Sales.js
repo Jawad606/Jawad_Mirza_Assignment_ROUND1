@@ -19,7 +19,7 @@ SalesRouter.route("/")
     Sales.find().then((sales) => {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
-      res.json(sales);
+      res.json(sales[0]);
     });
   })
   .post(cors.cors, (req, res, next) => {
