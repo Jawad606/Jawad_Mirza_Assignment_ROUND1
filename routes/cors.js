@@ -6,7 +6,9 @@ const cors = require("cors");
 const whitelist = [
   "http://localhost:3000",
   "http://localhost:5000",
-  'https://dm-testing-be-dev-trial.herokuapp.com/'
+  'https://dm-testing-be-dev-trial.herokuapp.com/',
+  'https://jawad606.github.io'
+
 ];
 var corsOptionsDelegate = (req, callback) => {
   var corsOptions;
