@@ -48,7 +48,7 @@ SalesRouter.route("/:favId")
       { new: true }
     )
       .then((sales) => {
-        Sales.findById(sales._id).then((sales) => {
+        Sales.find().then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales);
@@ -83,7 +83,7 @@ SalesRouter.route("/:favId")
       { new: true }
     )
       .then((sales) => {
-        Sales.findById(sales._id).then((sales) => {
+        Sales.find().then((sales) => {
           res.statusCode = 200;
           res.setHeader("Content-Type", "application/json");
           res.json(sales);
